@@ -1,0 +1,20 @@
+@model UserViewModel
+@{
+    ViewData["Title"] = "Create User";
+}
+<div class="row justify-content-center">
+    <div class="col-lg-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white">
+                <div class="card-title">
+                    <h4>@ViewData["Title"]</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form asp-controller="User" asp-action="Create" method="post">
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
