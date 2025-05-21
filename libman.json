@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap-icons@1.11.3",
+      "destination": "wwwroot/lib/bootstrap-icons/"
+    }
+  ,
+{
+  "provider": "cdnjs",
+  "library": "sweetalert2@11.16.1",
+  "destination": "wwwroot/lib/sweetalert2/"
+}
+]
+}

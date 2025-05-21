@@ -1,5 +1,5 @@
-using MambaPointMPGS.Models;
 using MambaPointMPGS.Services;
+using MambaPointMPGS.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -81,7 +81,7 @@ public class RoleController : Controller
             return View(role);
         }
         TempData["message"] = "Role updated successfully";
-        TempData["flag"] = "danger";
+        TempData["flag"] = "success";
         return RedirectToAction(nameof(Index));
     }
 }

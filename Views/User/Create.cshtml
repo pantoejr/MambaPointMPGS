@@ -12,7 +12,52 @@
             </div>
             <div class="card-body">
                 <form asp-controller="User" asp-action="Create" method="post">
-                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" asp-for="FirstName">First Name</label>
+                                <input asp-for="FirstName" class="form-control border-0 p-3 bg-light" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" asp-for="LastName">Last Name</label>
+                                <input asp-for="LastName" class="form-control border-0 p-3 bg-light" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="Email" class="form-label"></label>
+                                <input asp-for="Email" class="form-control border-0 p-3 bg-light" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="GroupId" class="form-label"></label>
+                                @Html.DropDownList("GroupId", (SelectList)ViewBag.GroupId, "Select Group", new { @class = "form-control border-0 p-3 bg-light", @required = true })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="Password" class="form-label"></label>
+                                <input asp-for="Password" class="form-control border-0 p-3 bg-light" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="PasswordConfirm" class="form-label"></label>
+                                <input asp-for="PasswordConfirm" class="form-control border-0 p-3 bg-light" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary text-white">Submit</button>
+                        <a asp-action="Index" asp-controller="User" class="btn btn-light">Back To List</a>
+                    </div>
                 </form>
             </div>
         </div>

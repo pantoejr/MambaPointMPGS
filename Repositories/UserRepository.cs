@@ -1,4 +1,5 @@
 using MambaPointMPGS.Data;
+using MambaPointMPGS.Models;
 using MambaPointMPGS.Services;
 using MambaPointMPGS.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -33,15 +34,28 @@ public class UserRepository: IUserService
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                UserName = user.Email,
                 NormalizedEmail = user.Email.ToUpper(),
                 NormalizedUserName = user.Email.ToUpper(),
                 LoginHint = user.PasswordConfirm,
                 IsActive = true,
             };
-            await _userManager.CreateAsync(newUser, user.PasswordConfirm);
+            var result = await _userManager.CreateAsync(newUser, user.PasswordConfirm);
             List<string?> groupRoles = await _context.GroupRoles.Where(x=>x.GroupId == user.GroupId).Select(x=>x.Role!.Name).ToListAsync();
-            await _userManager.AddToRolesAsync(newUser, groupRoles!);
-            return true;
+
+            if (result.Succeeded)
+            {
+                var userGroup = new GroupUser
+                {
+                    GroupId = user.GroupId,
+                    UserId = newUser.Id,
+                };
+                await _context.GroupUsers.AddAsync(userGroup);
+                await _userManager.AddToRolesAsync(newUser, groupRoles);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
         catch (Exception e)
         {

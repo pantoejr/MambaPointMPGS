@@ -1,0 +1,43 @@
+﻿@model IEnumerable<IdentityRole>
+@{
+    int count = 1;
+}
+
+<div class="card border-0 shadow-sm rounded">
+    <div class="card-header bg-white">
+        <h4 class="text-white">Remove Group Roles</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model)
+                    {
+                        <tr>
+                            <td>@count</td>
+                            <td>@role.Name</td>
+                            <td>
+                                <form asp-action="RemoveGroupRole" asp-controller="Group" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" value="@ViewBag.GroupID" name="groupID" />
+                                    <input type="hidden" value="@role.Id" name="roleID" />
+                                    <button class="btn btn-danger btn-sm text-white">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        count++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
